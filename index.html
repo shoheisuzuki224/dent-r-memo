@@ -1,0 +1,219 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#292621"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="mobile-web-app-capable" content="yes"><meta name="description" content="タスク、メモ、歯科・会社・プライベートの記録をiPhoneで管理"><meta name="apple-mobile-web-app-title" content="Dent-Rメモ"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="192x192" href="icon-192.png"><title>Dent-Rメモ</title><style>
+:root{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;color:#292621;background:#f7f6f3}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e9e6df;padding:calc(16px + env(safe-area-inset-top)) 20px 18px;position:sticky;top:0;z-index:2}.brand{font-size:22px;font-weight:750;letter-spacing:-.6px}.sub{font-size:12px;color:#81786e;margin-top:3px}.wrap{max-width:720px;margin:auto;padding:18px 16px 110px}.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:18px}.tab{white-space:nowrap;background:white;border:1px solid #e8e5df;border-radius:40px;padding:10px 14px;color:#5f5850}.tab.active{background:#352d26;color:white;border-color:#352d26}.bar{display:flex;gap:8px;margin-bottom:14px}input,textarea,select{font:inherit;background:#fff;border:1px solid #dcd8d0;border-radius:10px;padding:12px;width:100%;color:#27221d}textarea{min-height:150px;resize:vertical}button{font:inherit;cursor:pointer}button:disabled{opacity:.5}.action{background:#342c25;color:white;border:none;border-radius:11px;padding:12px 14px;font-weight:600}.secondary{background:#fff;border:1px solid #ded8ce;color:#3f352c;border-radius:10px;padding:10px}.entry{background:white;border:1px solid #ebe7df;padding:17px;margin:10px 0;border-radius:14px}.entry h3{margin:0 0 8px;font-size:17px;overflow-wrap:anywhere}.meta{display:flex;gap:8px;flex-wrap:wrap;color:#786e64;font-size:12px}.pill{background:#f1eee9;border-radius:20px;padding:4px 8px}.excerpt{color:#59534c;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;margin:10px 0}.entryfooter{display:flex;justify-content:space-between;align-items:center}.small{font-size:12px;color:#82776e}.floating{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));right:20px;border:0;background:#342b23;color:white;border-radius:50px;padding:16px 21px;font-weight:700;box-shadow:0 4px 18px #0003;z-index:3}.hide{display:none!important}.field{margin:15px 0}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}.overlay{position:fixed;inset:0;background:#0007;z-index:5;display:flex;justify-content:center;align-items:flex-end}.sheet{max-width:720px;width:100%;background:#faf9f7;max-height:94vh;overflow:auto;border-radius:20px 20px 0 0;padding:22px 20px calc(25px + env(safe-area-inset-bottom))}.sheet h2{margin:0}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.file{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #eee;overflow-wrap:anywhere}.danger{color:#b23c2f}.muted{color:#82776e;font-size:13px}.empty{text-align:center;color:#928679;padding:58px 10px}.voice{background:#f0ece6;padding:14px;border-radius:13px;margin:15px 0}.count{font-size:13px;color:#7c7065;margin-bottom:14px}.notice{font-size:12px;color:#6f665c;line-height:1.5}.sectiontitle{font-size:15px;margin:22px 0 10px}a{color:#6a4c30}.voicefab{position:fixed;bottom:calc(85px + env(safe-area-inset-bottom));right:20px;z-index:3;border:0;border-radius:45px;padding:13px 19px;background:#835344;color:white;font-weight:700;box-shadow:0 4px 18px #0002}.rec-screen{position:fixed;inset:0;background:#f7f6f3;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(25px + env(safe-area-inset-top)) 24px calc(25px + env(safe-area-inset-bottom));text-align:center}.rec-dot{height:76px;width:76px;border-radius:50%;background:#a85448;color:white;display:grid;place-items:center;font-size:36px;margin-bottom:20px}.rec-dot.active{animation:pulse 1.4s infinite alternate}@keyframes pulse{to{box-shadow:0 0 0 18px #a8544820}}.rec-transcript{width:100%;max-width:520px;min-height:90px;background:#fff;border-radius:12px;padding:16px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;margin:20px 0}.rec-buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.rec-buttons button{min-height:47px}.rec-hint{font-size:13px;color:#81786e;max-width:450px;line-height:1.7}.rec-status{font-weight:600;min-height:25px}.rec-screen textarea{min-height:100px}
+</style></head><body><header><div class="brand">Dent-R <span style="font-weight:400">メモ</span></div><div class="sub">タスクも、学びも。ひとつの場所に。</div></header><main class="wrap"><nav class="tabs" id="tabs"></nav><div id="home"><div class="bar"><input id="search" placeholder="タイトル・本文を検索"><button class="secondary" id="settingsBtn">設定</button></div><div class="count" id="count"></div><div id="items"></div></div><section id="settings" class="hide"><h2>設定・データ保護</h2><p class="muted">記録と添付ファイルはこのブラウザの端末内領域に保存されます。削除・端末故障・ブラウザデータ消去に備え、定期的にバックアップしてください。</p><div class="tools"><button id="exportBtn" class="action">全データを書き出す</button><button id="importBtn" class="secondary">バックアップを復元</button><input id="importFile" type="file" accept=".json,application/json" class="hide"></div><p class="notice">バックアップには添付ファイルが含まれ、容量が大きくなる場合があります。復元は既存のメモを削除せず、同一IDは更新せずにスキップします。個人情報を含むファイルは適切に管理してください。</p><h3 class="sectiontitle">保存状態</h3><div id="storage"></div><button class="secondary" id="backBtn" style="margin-top:20px">戻る</button></section></main><button class="voicefab" id="quickVoiceBtn">🎙️ 音声メモ</button><button class="floating" id="addBtn">＋ メモ追加</button><section id="recScreen" class="rec-screen hide" aria-label="音声メモ"><div id="recDot" class="rec-dot">🎙</div><h2 style="margin:0 0 10px">音声クイック登録</h2><div id="recStatus" class="rec-status" aria-live="polite">録音準備中</div><div class="rec-hint">「分類、歯科。種類、タスク。タイトル、インプラント治療計画立案。期限、明日。以上」<br>項目は自由な順番で。省略可能。「以上」で保存します。</div><div id="recTranscript" class="rec-transcript" aria-live="polite">認識した内容がここに表示されます。</div><div class="rec-buttons"><button id="recStart" class="action">🎙 録音開始</button><button id="recFinish" class="secondary">この内容で保存</button><button id="recCancel" class="secondary">閉じる</button></div><p id="recWarning" class="rec-hint" style="margin-top:18px"></p><textarea id="recManual" class="hide" placeholder="音声認識に対応しない場合、iPhoneのキーボードのマイクで入力し「以上」を付けてください"></textarea><button id="recManualSave" class="secondary hide" style="margin-top:10px">入力内容を保存</button></section><div id="modal" class="overlay hide"><div class="sheet"><div class="row"><h2 id="modalTitle">新しいメモ</h2><button id="closeBtn" class="secondary" style="flex:0">閉じる</button></div><div class="voice"><strong>音声指示・簡単登録</strong><div class="muted" style="margin:5px 0">例：「分類、プライベート。種類、タスク。タイトル、牛乳を買う。以上」</div><div class="row" style="margin-top:9px"><input id="voiceText" placeholder="話すか、指示文を入力"><button id="micBtn" class="secondary" style="flex:0">🎙️</button></div><button id="parseBtn" class="secondary" style="width:100%;margin-top:9px">指示文を解析してフォームへ反映</button><div id="voiceStatus" class="notice" aria-live="polite" style="margin-top:7px"></div></div><div class="field"><label for="title">タイトル *</label><input id="title" maxlength="200" placeholder="メモのタイトル"></div><div class="field"><label for="body">本文</label><textarea id="body" placeholder="詳細、気づき、学び、次の行動など"></textarea></div><div class="row"><div class="field"><label for="category">分類</label><select id="category"><option value="company">会社</option><option value="dental">歯科</option><option value="private">プライベート</option></select></div><div class="field"><label for="kind">種類</label><select id="kind"><option value="task">タスク</option><option value="note">メモ・記録</option><option value="learn">学びたいこと</option></select></div></div><div class="row"><div class="field"><label for="due">期限（任意）</label><input id="due" type="date"></div><div class="field"><label for="status">状況</label><select id="status"><option value="open">未完了</option><option value="done">完了</option></select></div></div><div class="field"><label for="attachments">ファイルを添付（複数可）</label><input id="attachments" type="file" multiple><div id="fileList"></div></div><div class="tools"><button id="saveBtn" class="action" style="flex:2">保存する</button><button id="deleteBtn" class="secondary danger hide">削除</button></div></div></div><script>
+const cats={company:'会社',dental:'歯科',private:'プライベート'},kinds={task:'タスク',note:'メモ・記録',learn:'学びたいこと'};let db,filter='all',editing=null,pending=[],removed=[];const $=id=>document.getElementById(id);const uid=()=>crypto.randomUUID?crypto.randomUUID():String(Date.now())+'_'+Math.random();
+function request(r){return new Promise((res,rej)=>{r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}function store(name,mode='readonly'){return db.transaction(name,mode).objectStore(name)}async function all(name){return request(store(name).getAll())}function writeTx(name,operation){return new Promise((resolve,reject)=>{let tx=db.transaction(name,'readwrite'),done=false;tx.oncomplete=()=>{done=true;resolve()};tx.onabort=()=>{if(!done)reject(tx.error||new Error('保存が中断されました'))};tx.onerror=()=>{};try{operation(tx.objectStore(name))}catch(e){tx.abort();reject(e)}})}async function put(name,value){return writeTx(name,s=>s.put(value))}async function del(name,key){return writeTx(name,s=>s.delete(key))}
+async function init(){db=await new Promise((res,rej)=>{const r=indexedDB.open('dentr-memo-db',1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('notes'))d.createObjectStore('notes',{keyPath:'id'});if(!d.objectStoreNames.contains('files')){const f=d.createObjectStore('files',{keyPath:'id'});f.createIndex('noteId','noteId')}};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});renderTabs();await render();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});}function renderTabs(){const opts=[['all','すべて'],['company','会社'],['dental','歯科'],['private','プライベート'],['task','未完了タスク'],['learn','学びたいこと']];$('tabs').innerHTML=opts.map(([id,t])=>`<button class="tab ${filter===id?'active':''}" data-filter="${id}">${t}</button>`).join('');document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderTabs();render()})}function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function render(){let notes=await all('notes');notes.sort((a,b)=>(a.status==='done')-(b.status==='done')||(a.due||'9999').localeCompare(b.due||'9999')||b.updated-a.updated);const query=$('search').value.trim().toLowerCase();notes=notes.filter(n=>(filter==='all'||filter===n.category||(filter==='task'&&n.kind==='task'&&n.status==='open')||(filter==='learn'&&n.kind==='learn'))&&(!query||[n.title,n.body].join(' ').toLowerCase().includes(query)));$('count').textContent=`${notes.length} 件の記録`;$('items').innerHTML=notes.length?notes.map(n=>`<article class="entry" data-id="${escapeHTML(n.id)}"><h3>${n.status==='done'?'✓ ':''}${escapeHTML(n.title)}</h3><div class="meta"><span class="pill">${cats[n.category]}</span><span class="pill">${kinds[n.kind]}</span>${n.due?`<span class="pill">期限 ${escapeHTML(n.due)}</span>`:''}${n.status==='done'?'<span class="pill">完了</span>':''}</div>${n.body?`<div class="excerpt">${escapeHTML(n.body.length>160?n.body.slice(0,160)+'…':n.body)}</div>`:''}<div class="entryfooter"><span class="small">${new Date(n.updated).toLocaleDateString('ja-JP')}</span><button class="secondary" data-edit="${escapeHTML(n.id)}">開く・編集</button></div></article>`).join(''):'<div class="empty">まだ記録がありません。<br>「＋ メモ追加」から始めましょう。</div>';document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openNote(b.dataset.edit));}
+async function openNote(id){editing=id||null;pending=[];removed=[];$('modalTitle').textContent=id?'メモを編集':'新しいメモ';$('deleteBtn').classList.toggle('hide',!id);$('title').value='';$('body').value='';$('category').value='company';$('kind').value='task';$('due').value='';$('status').value='open';$('voiceText').value='';$('voiceStatus').textContent='';$('attachments').value='';if(id){const n=await request(store('notes').get(id));if(!n)return;$('title').value=n.title;$('body').value=n.body;$('category').value=n.category;$('kind').value=n.kind;$('due').value=n.due||'';$('status').value=n.status}await renderFiles();$('modal').classList.remove('hide')}
+async function renderFiles(){const existing=editing?(await all('files')).filter(f=>f.noteId===editing&&!removed.includes(f.id)):[];$('fileList').innerHTML=existing.map(f=>`<div class="file"><span>${escapeHTML(f.name)} (${Math.round(f.size/1024)} KB)</span><span><button class="secondary" data-download="${f.id}">開く</button> <button class="secondary" data-remove="${f.id}">×</button></span></div>`).join('')+pending.map((f,i)=>`<div class="file"><span>${escapeHTML(f.name)} (${Math.round(f.size/1024)} KB)</span><button class="secondary" data-pending="${i}">×</button></div>`).join('');document.querySelectorAll('[data-download]').forEach(b=>b.onclick=async()=>{const f=await request(store('files').get(b.dataset.download));const url=URL.createObjectURL(f.blob);const a=document.createElement('a');a.href=url;a.download=f.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)});document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{removed.push(b.dataset.remove);renderFiles()});document.querySelectorAll('[data-pending]').forEach(b=>b.onclick=()=>{pending.splice(Number(b.dataset.pending),1);renderFiles()})}
+$('attachments').onchange=async e=>{pending.push(...Array.from(e.target.files));e.target.value='';await renderFiles()};let modalSaving=false;$('saveBtn').onclick=async()=>{
+ if(modalSaving)return;const title=$('title').value.trim();if(!title){alert('タイトルを入力してください');return}
+ modalSaving=true;$('saveBtn').disabled=true;let committed=false;
+ try{
+   const id=editing||uid(),old=editing?await request(store('notes').get(id)):null;
+   await put('notes',{id,title,body:$('body').value,category:$('category').value,kind:$('kind').value,due:$('due').value,status:$('status').value,created:old?.created||Date.now(),updated:Date.now()});committed=true;
+   for(const f of pending)await put('files',{id:uid(),noteId:id,name:f.name,type:f.type,size:f.size,blob:f});
+   for(const fid of removed)await del('files',fid);
+   $('modal').classList.add('hide');
+ }catch(e){alert(committed?'メモは保存されましたが、添付ファイルの処理で問題が発生しました：'+e.message:'保存できませんでした：'+e.message)}
+ finally{modalSaving=false;$('saveBtn').disabled=false}
+ if(committed){try{await render()}catch(e){console.error('保存済みですが画面更新に失敗',e)}}
+};$('deleteBtn').onclick=async()=>{if(!editing||!confirm('このメモと添付ファイルを削除しますか？'))return;for(const f of (await all('files')).filter(f=>f.noteId===editing))await del('files',f.id);await del('notes',editing);$('modal').classList.add('hide');await render()};$('closeBtn').onclick=()=>$('modal').classList.add('hide');$('addBtn').onclick=()=>openNote();$('search').oninput=render;
+function parseCommand(raw){let t=raw.trim().replace(/[。！!]+$/,'');let category=t.match(/プライベート|私生活|個人|買い物/) ?'private':t.match(/歯科|臨床|患者|診療|インプラント/)?'dental':t.match(/会社|Dent.?R|仕事|事業/ig)?'company':null;let kind=/学びたい|勉強したい|調べたい|学習/.test(t)?'learn':/メモ|記録|覚え/.test(t)&&!/タスク/.test(t)?'note':'task';let due='';const now=new Date();if(/明日/.test(t)){const d=new Date(now);d.setDate(d.getDate()+1);due=localDate(d)}else if(/今日/.test(t)){due=localDate(now)}else{const m=t.match(/(\d{1,2})月(\d{1,2})日/);if(m){let year=now.getFullYear(),dt=new Date(year,Number(m[1])-1,Number(m[2]));if(dt<new Date(now.getFullYear(),now.getMonth(),now.getDate()))year++;due=localDate(new Date(year,Number(m[1])-1,Number(m[2])))}}t=t.replace(/^(会社|歯科|プライベート|個人|私生活|仕事)(の)?(タスク|メモ|学習|学びたいこと)?(に|へ|として|に対して)?/,'').replace(/(を|って|と)?(追加して|登録して|メモして|記録して|入れて|追加|登録)$/,'').replace(/(までに|期限は)?(明日|今日|\d{1,2}月\d{1,2}日)(まで)?/g,'').replace(/^(に|へ)/,'').trim();return{title:t||raw,category,kind,due}}
+function localDate(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}$('parseBtn').onclick=()=>{const raw=$('voiceText').value.trim();if(!raw)return;const p=parseQuickVoice(raw);$('title').value=p.title;if(p.body)$('body').value=p.body;$('category').value=p.category;$('kind').value=p.kind;$('due').value=p.due;$('status').value=p.status;$('voiceStatus').textContent='解析結果を反映しました。確認して「保存する」を押してください。'};
+$('micBtn').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('voiceStatus').textContent='このブラウザでは音声認識を使えません。iPhoneキーボードのマイクで指示文を入力してください。';$('voiceText').focus();return}const r=new SR();r.lang='ja-JP';r.interimResults=false;r.onresult=e=>{$('voiceText').value=e.results[0][0].transcript;$('parseBtn').click()};r.onerror=e=>$('voiceStatus').textContent='音声認識エラー: '+e.error+'。キーボードの音声入力も使えます。';r.onend=()=>{$('micBtn').textContent='🎙️'};$('micBtn').textContent='録音中';$('voiceStatus').textContent='音声入力中（ネット接続が必要な場合があります）';try{r.start()}catch(e){$('voiceStatus').textContent=e.message}};
+
+// v0.2: One-tap quick capture. Existing IndexedDB schema and stores intentionally unchanged.
+let recEngine=null,recPieces=[],recInterim='',recFinalizing=false,recEnabled=false,recRestartCount=0,recStopRequested=false;
+const recScreen=$('recScreen');
+function textForCapture(){return (recPieces.join(' ')+' '+recInterim).trim()}
+function displayCapture(){let t=textForCapture();$('recTranscript').textContent=t||'話しかけてください…'}
+function endToken(t){return /(?:^|[。｡、,\s])以上[。｡、,\s！!]*$/.test(t.trim())||/以上[。｡、,\s！!]*$/.test(t.trim())}
+// v0.4: Deterministic field-based voice parser. No cloud AI or inferred dates.
+// v0.4: date-only parser; strict calendar validation, Japanese speech variants.
+function jpNumber(x){
+ if(!x)return NaN;
+ let n=String(x).replace(/[０-９]/g,c=>String(c.charCodeAt(0)-65296));
+ if(/^\d+$/.test(n))return Number(n);
+ const digit={'〇':0,'零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9};
+ if(n==='十')return 10;
+ if(n.includes('十')){const parts=n.split('十');if(parts.length!==2)return NaN;const v=(parts[0]?digit[parts[0]]:1)*10+(parts[1]?digit[parts[1]]:0);return Number.isFinite(v)?v:NaN}
+ if([...n].every(c=>c in digit))return Number([...n].map(c=>digit[c]).join(''));
+ return NaN;
+}
+function parseDueDetailed(input,reference=new Date()){
+ let t=String(input||'').normalize('NFKC').replace(/[\s、。,.！!？?]/g,'').replace(/^(?:は|を|が|に|として)/,'').replace(/(?:までに?|で|に設定|とする|です|にして|予定)$/g,'');
+ const base=new Date(reference.getFullYear(),reference.getMonth(),reference.getDate());
+ const result=(date,matched)=>({due:localDate(date),error:'',matched});
+ const fail=(message)=>({due:'',error:message||'期限を解釈できませんでした',matched:false});
+ const addDays=(n)=>{const d=new Date(base);d.setDate(d.getDate()+n);return result(d,true)};
+ const months=(delta)=>{const d=new Date(base.getFullYear(),base.getMonth()+delta,1);return d};
+ const weekday={'月':1,'火':2,'水':3,'木':4,'金':5,'土':6,'日':0};
+ let m;
+ if(/^(今日|本日)(中)?$/.test(t))return addDays(0);
+ if(/^(明日|あした|あす)(中)?$/.test(t))return addDays(1);
+ if(/^(明後日|あさって)(中)?$/.test(t))return addDays(2);
+ if(/^(しあさって|明々後日)$/.test(t))return addDays(3);
+ if((m=t.match(/^(\d+|[一二三四五六七八九十]+)日後$/))){let n=jpNumber(m[1]);return n>0&&n<=3650?addDays(n):fail('日数が範囲外です')}
+ if((m=t.match(/^(\d+|[一二三四五六七八九十]+)週間後$/))){let n=jpNumber(m[1]);return n>0&&n<=520?addDays(n*7):fail('週数が範囲外です')}
+ if((m=t.match(/^(\d+|[一二三四五六七八九十]+)か?月後$/))){let n=jpNumber(m[1]);if(!(n>0&&n<120))return fail('月数が範囲外です');const d=months(n);d.setDate(Math.min(base.getDate(),new Date(d.getFullYear(),d.getMonth()+1,0).getDate()));return result(d,true)}
+ if((m=t.match(/^(今週|来週|再来週)(?:の)?([月火水木金土日])(?:曜日|曜)?$/))){
+  // Monday is week start; 来週=next calendar week, not next occurrence within 7 days.
+  let weeks={'今週':0,'来週':1,'再来週':2}[m[1]];
+  const mondayOffset=(base.getDay()+6)%7;
+  const d=new Date(base);d.setDate(base.getDate()-mondayOffset+weeks*7+((weekday[m[2]]+6)%7));
+  return d<base?fail('指定した曜日は過去です'):result(d,true);
+ }
+ if((m=t.match(/^(?:次の|今度の)?([月火水木金土日])(?:曜日|曜)$/))){let delta=(weekday[m[1]]-base.getDay()+7)%7;return addDays(delta||7)}
+ if(/^(今週末|今週の週末|来週末|来週の週末)$/.test(t))return fail('週末は土曜日と日曜日のどちらか不明です。「来週土曜日」のように指定してください');
+ if((m=t.match(/^(今月|来月|再来月)(?:の)?(末|末日|最終日|初日|初め|はじめ)$/))){let d=months({'今月':0,'来月':1,'再来月':2}[m[1]]);if(/末|最終/.test(m[2]))d=new Date(d.getFullYear(),d.getMonth()+1,0);return d<base?fail('指定した日は過去です'):result(d,true)}
+ if((m=t.match(/^(今月|来月|再来月)(?:の)?([0-9一二三四五六七八九十〇零]+)日$/))){let first=months({'今月':0,'来月':1,'再来月':2}[m[1]]),day=jpNumber(m[2]);return validateDate(first.getFullYear(),first.getMonth()+1,day,base,fail,result)}
+ if((m=t.match(/^(今月|来月|再来月)$/))){return fail('月だけでは日付が決められません。「来月末」など日まで指定してください')}
+ if((m=t.match(/^([0-9一二三四五六七八九十〇零]+)月(?:末|末日|最終日)$/))){let month=jpNumber(m[1]);if(month<1||month>12)return fail('月が無効です');let year=base.getFullYear();let d=new Date(year,month,0);if(d<base)d=new Date(year+1,month,0);return result(d,true)}
+ if(/^(月末|今月末)$/.test(t)){const d=new Date(base.getFullYear(),base.getMonth()+1,0);return result(d,true)}
+ // Speech often spells 11月15日 as 十一月十五日.
+ const jp='[0-9一二三四五六七八九十〇零]+';
+ let year,month,day,explicitYear=false;
+ const full=new RegExp('^(20\\d{2}|令和'+jp+')(?:年|/|-|\\.)('+jp+')(?:月|/|-|\\.)('+jp+')日?$');
+ const monthDay=new RegExp('^('+jp+')月('+jp+')日$');
+ if((m=t.match(full))){year=m[1].startsWith('令和')?2018+jpNumber(m[1].slice(2)):jpNumber(m[1]);month=jpNumber(m[2]);day=jpNumber(m[3]);explicitYear=true}
+ else if((m=t.match(monthDay))){year=base.getFullYear();month=jpNumber(m[1]);day=jpNumber(m[2]);}
+ else if((m=t.match(new RegExp('^('+jp+')日$')))){year=base.getFullYear();month=base.getMonth()+1;day=jpNumber(m[1]); if(day<base.getDate()){const next=months(1);year=next.getFullYear();month=next.getMonth()+1}}
+ else return fail('期限を解釈できませんでした。例：来週金曜日、11月15日、3日後');
+ if(!explicitYear){const d=new Date(year,month-1,day);if(d<base){year++;}}
+ return validateDate(year,month,day,base,fail,result);
+}
+function validateDate(y,m,d,base,fail,result){
+ if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<2000||y>2200||m<1||m>12||d<1||d>31)return fail('日付が無効です');
+ const dt=new Date(y,m-1,d);
+ if(dt.getFullYear()!==y||dt.getMonth()!==m-1||dt.getDate()!==d)return fail('存在しない日付です');
+ if(dt<base)return fail('期限が過去の日付です');
+ return result(dt,true);
+}
+function parseDueVoice(input,reference=new Date()){return parseDueDetailed(input,reference).due}
+function cleanVoiceValue(t){return t.replace(/^[\s、。,:：]+|[\s、。,:：]+$/g,'').trim()}
+const voiceFieldLabels={
+ title:'タイトル|題名|件名',body:'本文|内容|詳細',category:'分類|カテゴリー|カテゴリ|区分',kind:'種類|種別|タイプ',due:'期限|締め切り|締切|期日',status:'状況|状態|ステータス|進捗'
+};
+const voiceLabels=Object.entries(voiceFieldLabels).flatMap(([field,labels])=>labels.split('|').map(label=>({field,label}))).sort((a,b)=>b.label.length-a.label.length);
+function categorizeVoice(v){return /歯科|臨床|診療/.test(v)?'dental':/プライベート|個人|私生活|家庭/.test(v)?'private':/会社|事業|仕事|Dent.?R/i.test(v)?'company':null}
+function kindVoice(v){return /タスク|やること|TODO|ToDo|トゥードゥー/i.test(v)?'task':/学び|学習|勉強|調べたい/.test(v)?'learn':/メモ|記録|ノート/.test(v)?'note':null}
+function statusVoice(v){return /未完了|未着手|進行中|対応中|保留/.test(v)?'open':/完了|済み|終了|対応済み/.test(v)?'done':null}
+function parseQuickVoice(raw){
+ const spoken=String(raw||'').normalize('NFKC').replace(/(?:[、。\s]*)以上[、。\s！!]*$/,'').trim();
+ const tokens=[];
+ // iPhone may omit punctuation entirely: "分類歯科種類タスクタイトル治療計画期限明日".
+ const pattern=/(タイトル|題名|件名|本文|内容|詳細|分類|カテゴリー|カテゴリ|区分|種類|種別|タイプ|期限|締め切り|締切|期日|状況|状態|ステータス|進捗)(?:\s*[:：、,。]?\s*)/g;
+ let m;
+ while((m=pattern.exec(spoken))!==null){
+   const field=voiceLabels.find(x=>x.label===m[1])?.field;
+   // Recognize a field label only at natural breaks, or if it is a compact command.
+   // Avoid capturing medical terms like "内容物" as labels within body text.
+   const before=spoken.slice(Math.max(0,m.index-2),m.index);
+   const after=spoken.slice(pattern.lastIndex);
+   if(m.index>0 && !/[、。,.:：\s]/.test(spoken[m.index-1]) && !/^(分類|カテゴリー|種類|タイトル|本文|期限|状況)$/.test(m[1]))continue;
+   if(/^(物|量|物質)/.test(after)&&m[1]==='内容')continue;
+   tokens.push({field,pos:m.index,end:pattern.lastIndex});
+ }
+ const values={title:'',body:'',category:null,kind:null,due:'',status:null};
+ if(!tokens.length){
+   const old=spoken.match(/^(会社|Dent[- ]?R|歯科|臨床|プライベート|個人|私生活|家庭|仕事)(?:の)?(タスク|メモ|記録|学習|学びたいこと)?(?:に|へ|として)?(?:追加|登録|記録|メモ)?(?:して|する)?[。｡、,:：\s]*/i);
+   if(old){values.category=categorizeVoice(old[1]);values.kind=kindVoice(old[2]||'')||'task';values.title=cleanVoiceValue(spoken.slice(old[0].length).replace(/(?:を|って|と)?(?:追加して|登録して|メモして|記録して)$/,''))}
+   else {values.title=cleanVoiceValue(spoken); values.category=categorizeVoice(spoken)}
+ }else{
+   const prefix=spoken.slice(0,tokens[0].pos);
+   values.category=categorizeVoice(prefix);values.kind=kindVoice(prefix);
+   for(let j=0;j<tokens.length;j++){
+     const tok=tokens[j];const value=cleanVoiceValue(spoken.slice(tok.end,j+1<tokens.length?tokens[j+1].pos:spoken.length).replace(/^(?:は|を|が|に|として)[、。,:：\s]*/,'').replace(/(?:に設定|にして|で登録|です)$/,''));
+     if(!value)continue;
+     if(tok.field==='category')values.category=categorizeVoice(value)||values.category;
+     if(tok.field==='kind')values.kind=kindVoice(value)||values.kind;
+     if(tok.field==='status')values.status=statusVoice(value)||values.status;
+     if(tok.field==='due'){const d=parseDueDetailed(value);values.due=d.due;values.dueWarning=d.error;values.dueSpoken=value}
+     if(tok.field==='body')values.body=values.body?values.body+'\n'+value:value;
+     if(tok.field==='title')values.title=value;
+   }
+   if(!values.category){
+      // Fallback only from the prefix, never from the body/title to avoid misclassification.
+      values.category=categorizeVoice(prefix);
+   }
+   if(!values.title&&!values.body){const lead=cleanVoiceValue(prefix.replace(/^(会社|歯科|プライベート)(の)?(タスク|メモ)?(に追加)?/,'').replace(/^追加[。、\s]*/,''));if(lead)values.title=lead}
+ }
+ if(!values.title&&values.body)values.title=values.body.split('\n')[0].slice(0,80);
+ return {title:values.title.slice(0,200),body:values.body,category:values.category||'company',kind:values.kind||'task',due:values.due||'',dueWarning:values.dueWarning||'',dueSpoken:values.dueSpoken||'',status:values.status||'open'};
+}
+
+let captureCommitted=false,captureSavePromise=null,recSession=0;
+async function commitCapture(){
+ if(captureCommitted||captureSavePromise)return captureSavePromise;
+ const spoken=(textForCapture()||$('recManual').value).trim();
+ const v=parseQuickVoice(spoken);
+ if(!v.title){$('recStatus').textContent='内容が取得できませんでした。もう一度話してください。';return}
+ captureCommitted=true;recFinalizing=true;recStopRequested=true;recEnabled=false;
+ $('recFinish').disabled=true;$('recManualSave').disabled=true;$('recStart').classList.add('hide');
+ try{recEngine?.abort()}catch(e){}
+ captureSavePromise=(async()=>{
+   let saved=false;
+   try{
+     const now=Date.now(),id=uid();
+     await put('notes',{id,title:v.title,body:v.body,category:v.category,kind:v.kind,due:v.due,status:v.status,created:now,updated:now});
+     saved=true;
+     $('recStatus').textContent=`保存済み：${cats[v.category]} / ${kinds[v.kind]}`;
+     $('recWarning').textContent=v.dueWarning?'期限は未設定：'+v.dueWarning:'保存は1件のみ行いました。';
+     $('recTranscript').textContent=[v.title,v.body,v.due?'期限：'+v.due:''].filter(Boolean).join(' / ');
+   }catch(e){$('recStatus').textContent='保存できませんでした：'+e.message;captureCommitted=false;$('recFinish').disabled=false}
+   if(saved){try{await render()}catch(e){console.error('画面の再表示に失敗しましたが、記録は保存済みです',e);$('recWarning').textContent+=' 一覧の更新に失敗しました。画面を再読み込みしてください。'} }
+   recFinalizing=false;
+ })();await captureSavePromise;captureSavePromise=null;
+}
+function quickRecordOpen(){
+ try{recEngine?.abort()}catch(e){}
+ recSession++;captureCommitted=false;captureSavePromise=null;recScreen.classList.remove('hide');recPieces=[];recInterim='';recFinalizing=false;recStopRequested=false;recRestartCount=0;recEnabled=true;
+ $('recManual').value='';$('recManual').classList.add('hide');$('recManualSave').classList.add('hide');$('recStart').classList.remove('hide');$('recStart').textContent='🎙 録音開始';$('recFinish').disabled=false;$('recManualSave').disabled=false;
+ $('recWarning').textContent='初回はマイクの許可が必要です。';displayCapture();startQuickRecording();
+}
+function startQuickRecording(){
+ if(captureCommitted)return;
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){recEnabled=false;$('recStatus').textContent='この端末ではWeb音声認識を使用できません';$('recWarning').textContent='iPhoneキーボードのマイクで入力してください。';$('recManual').classList.remove('hide');$('recManualSave').classList.remove('hide');$('recStart').classList.add('hide');return}
+ recEnabled=true;recStopRequested=false;recFinalizing=false;
+ const session=recSession;let r=new SR();recEngine=r;r.lang='ja-JP';r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
+ let lastFinalIndex=-1;
+ r.onstart=()=>{if(session!==recSession||captureCommitted)return;$('recStatus').textContent='録音中。「以上」で保存';$('recDot').classList.add('active');$('recStart').classList.add('hide')};
+ r.onresult=e=>{
+   if(session!==recSession||captureCommitted)return;
+   // SpeechRecognition results is a changing result-list; rebuild from the current
+   // snapshot so changed indices do not duplicate or partially append text.
+   const finals=[],interims=[];
+   for(let i=0;i<e.results.length;i++){
+      const t=e.results[i][0].transcript;
+      if(e.results[i].isFinal)finals.push(t);else interims.push(t);
+   }
+   recPieces=finals;recInterim=interims.join(' ');
+   displayCapture();
+   // Never finalize on unstable interim transcription.
+   if(endToken(finals.join(' ')))commitCapture();
+ };
+ r.onerror=e=>{if(session!==recSession||captureCommitted)return;$('recWarning').textContent='音声認識: '+e.error+'。必要なら録音開始を再タップしてください。';if(e.error==='not-allowed'||e.error==='service-not-allowed'){recEnabled=false;$('recManual').classList.remove('hide');$('recManualSave').classList.remove('hide')}};
+ r.onend=()=>{
+  if(session!==recSession)return;
+  $('recDot').classList.remove('active');
+  if(captureCommitted||recStopRequested)return;
+  if(recEnabled && recRestartCount<2){recRestartCount++;$('recStatus').textContent='録音が中断されました。再開します';startQuickRecording();return}
+  $('recStatus').textContent='録音停止。「録音開始」で再開できます';$('recStart').classList.remove('hide');
+ };
+ try{r.start()}catch(e){$('recStatus').textContent='自動録音できません。録音開始をタップしてください';$('recStart').classList.remove('hide')}
+}
+$('quickVoiceBtn').onclick=quickRecordOpen;
+$('recStart').onclick=()=>{if(captureCommitted)return;recRestartCount=0;startQuickRecording()};
+$('recFinish').onclick=()=>{if(!captureCommitted)commitCapture()};
+$('recCancel').onclick=()=>{recSession++;recEnabled=false;recStopRequested=true;try{recEngine?.abort()}catch(e){}recScreen.classList.add('hide');history.replaceState(null,'',location.pathname)};
+$('recManualSave').onclick=()=>{if(captureCommitted)return;recPieces=[$('recManual').value];recInterim='';commitCapture()};
+// A second iPhone Home Screen shortcut can open this URL using Shortcuts → Open URLs.
+// Automatic mic capture is best-effort: iOS may require another explicit tap.
+if(new URLSearchParams(location.search).get('voice')==='1')setTimeout(quickRecordOpen,150);
+
+$('settingsBtn').onclick=async()=>{$('home').classList.add('hide');$('settings').classList.remove('hide');$('addBtn').classList.add('hide');const n=await all('notes'),f=await all('files');$('storage').textContent=`メモ ${n.length}件 ／ 添付ファイル ${f.length}件`};$('backBtn').onclick=()=>{$('settings').classList.add('hide');$('home').classList.remove('hide');$('addBtn').classList.remove('hide')};function readBase64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]);r.onerror=()=>rej(r.error);r.readAsDataURL(blob)})}function fromBase64(b64,type){const bin=atob(b64),bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new Blob([bytes],{type})}
+$('exportBtn').onclick=async()=>{try{const notes=await all('notes'),files=[];for(const f of await all('files'))files.push({id:f.id,noteId:f.noteId,name:f.name,type:f.type,size:f.size,base64:await readBase64(f.blob)});const payload={format:'dentr-memo-backup',version:1,exported:new Date().toISOString(),notes,files};const url=URL.createObjectURL(new Blob([JSON.stringify(payload)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`dentr-memo-backup-${localDate(new Date())}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){alert('書き出しに失敗しました: '+e.message)}};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(data.format!=='dentr-memo-backup'||data.version!==1||!Array.isArray(data.notes)||!Array.isArray(data.files))throw Error('対応していないバックアップ形式です');if(!confirm(`${data.notes.length}件のメモを復元します。既存データは残します。`))return;let count=0;for(const n of data.notes){if(!n.id||!n.title)continue;if(!(await request(store('notes').get(n.id)))){await put('notes',n);count++}}for(const f of data.files){if(!f.id||!f.noteId||typeof f.base64!=='string')continue;if(!(await request(store('files').get(f.id))))await put('files',{id:f.id,noteId:f.noteId,name:f.name,type:f.type,size:f.size,blob:fromBase64(f.base64,f.type)})}alert(`${count}件の新規メモを復元しました`);$('backBtn').click();await render()}catch(err){alert('復元できません: '+err.message)}finally{e.target.value=''}};init().catch(e=>alert('データベースを開けません: '+e.message));
+</script></body></html>
